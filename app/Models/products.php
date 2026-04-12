@@ -23,4 +23,7 @@ class products extends Model
         public function reviews(){
             return $this->hasMany(reviews::class);    
         }
+        public function images(){
+            return $this->morphMany(images::class , "imageable");    
+        }
 }
