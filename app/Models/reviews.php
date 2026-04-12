@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class reviow extends Model
+class reviews extends Model
 {
-    /** @use HasFactory<\Database\Factories\ReviowFactory> */
+    /** @use HasFactory<\Database\Factories\ReviewsFactory> */
     use HasFactory;
 }

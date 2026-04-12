@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reviows', function (Blueprint $table) {
+        Schema::create('product_details', function (Blueprint $table) {
             $table->id();
+            $table->string("brand");
+            $table->text("description");
+            $table->foreignId("product_id")->constrained("products");
+            $table->string("category");
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reviows');
+        Schema::dropIfExists('product_details');
     }
 };
