@@ -20,4 +20,7 @@ class products extends Model
      public function cartItems(){
         return $this->hasMany(cartItem::class);    
     }
+        public function reviews(){
+            return $this->hasMany(reviews::class);    
+        }
 }

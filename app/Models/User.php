@@ -26,7 +26,9 @@ class User extends Authenticatable
     public function carts(){
         return $this->hasMany(cart::class , 'user_id');    
     }
-
+        public function reviews(){
+            return $this->hasMany(reviews::class , 'user_id');    
+        }
     /**
      * The attributes that should be hidden for serialization.
      *
