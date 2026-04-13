@@ -26,6 +26,7 @@ class productsController extends Controller
         //
         $product = new products();
         $product->name = $request->name;
+        $product->price = $request->price;
     }
 
     /**
