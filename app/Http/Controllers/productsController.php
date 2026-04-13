@@ -31,7 +31,10 @@ class productsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $products = products::findOrFail($id);
+        return response()->json([
+            "data"=> $products,
+        ]);
     }
 
     /**

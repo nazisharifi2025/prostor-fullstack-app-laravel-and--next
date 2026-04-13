@@ -15,13 +15,13 @@ class products extends Model
         "price"
     ];
     public function productDetails(){
-        return $this->hasOne(productDetails::class);
+        return $this->hasOne(productDetails::class , 'product_id');
     }
      public function cartItems(){
-        return $this->hasMany(cartItem::class);    
+        return $this->hasMany(cartItem::class , 'cartItem_id');    
     }
         public function reviews(){
-            return $this->hasMany(reviews::class);    
+            return $this->hasMany(reviews::class , 'review_id');    
         }
         public function images(){
             return $this->morphMany(images::class , "imageable");    
