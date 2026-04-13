@@ -33,6 +33,7 @@ class productsController extends Controller
         $product->price = $request->price;
         $product->stock = $request->stock;
         $product->save();
+        $image = new images();
     }
 
     /**
