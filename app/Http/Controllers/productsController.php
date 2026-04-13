@@ -24,6 +24,8 @@ class productsController extends Controller
     public function store(Request $request)
     {
         //
+        $product = new products();
+        
     }
 
     /**
