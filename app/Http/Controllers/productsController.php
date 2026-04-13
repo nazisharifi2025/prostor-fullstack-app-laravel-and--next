@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\images;
 use App\Models\products;
 use Illuminate\Http\Request;
 
@@ -34,6 +35,8 @@ class productsController extends Controller
         $product->stock = $request->stock;
         $product->save();
         $image = new images();
+        $image->url = $imagePath;
+
     }
 
     /**
