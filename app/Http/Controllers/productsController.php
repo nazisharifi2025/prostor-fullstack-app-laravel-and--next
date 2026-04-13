@@ -25,6 +25,10 @@ class productsController extends Controller
     {
         //
         $product = new products();
+        $imagePath = null ;
+        if($request->hasFile("image_url")){
+            $imagePath = $request->file("image_url")->store("images" , "public");
+        }
         $product->name = $request->name;
         $product->price = $request->price;
         $product->stock = $request->stock;
