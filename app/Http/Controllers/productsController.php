@@ -28,6 +28,7 @@ class productsController extends Controller
         $product->name = $request->name;
         $product->price = $request->price;
         $product->stock = $request->stock;
+        $product->save();
     }
 
     /**
