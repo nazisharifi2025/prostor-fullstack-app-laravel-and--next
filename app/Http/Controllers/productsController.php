@@ -36,9 +36,9 @@ class productsController extends Controller
         $product->save();
         $image = new images();
         $image->url = $imagePath;
-        $image->imageable->id= $prodcut->id;
-        $imageable->imageable_type = products::class;
-
+        $image->imageable->id= $product->id;
+        $image->imageable_type = products::class;
+        $image->save();
     }
 
     /**
