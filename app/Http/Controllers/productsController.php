@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\productRequest;
 use App\Models\images;
+use App\Models\productDetails;
 use App\Models\products;
 use Illuminate\Http\Request;
 
@@ -22,23 +24,41 @@ class productsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(productRequest $request)
     {
-        //
-        $product = new products();
+        try{
         $imagePath = null ;
-        if($request->hasFile("image_url")){
-            $imagePath = $request->file("image_url")->store("images" , "public");
+        if($request->hasFile("img_url")){
+            $imagePath = $request->file("img_url")->store("images" , "public");
         }
-        $product->name = $request->name;
-        $product->price = $request->price;
-        $product->stock = $request->stock;
+        $product = products::create([
+            "name" => $request->name,
+            "stock" => $request->stock,
+            "price" => $request->price,
+        ]);
         $product->save();
-        $image = new images();
-        $image->url = $imagePath;
-        $image->imageable->id= $product->id;
-        $image->imageable_type = products::class;
+        $productDetails = productDetails::create([
+            "brand" => $request->brand,
+            "description" => $request->description,
+            "category" => $request->category,
+            "product_id" => $product->id,
+        ]);
+        $productDetails->save();
+        $image = images::create([
+            "img_url" => $imagePath,
+            "imageable_id" => $product->id,
+            "imageable_type" => products::class,
+        ]);
         $image->save();
+        return response()->json([
+            "message" => "Product created successfully",
+        ]);
+        }catch(\Exception $e){
+            return response()->json([
+                "message" => "Product creation failed",
+                "error" => $e->getMessage(),
+            ], 500);
+        }
     }
 
     /**
