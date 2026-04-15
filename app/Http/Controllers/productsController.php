@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\productRequest;
+use App\Http\Resources\productResource;
 use App\Models\images;
 use App\Models\productDetails;
 use App\Models\products;
@@ -16,9 +17,7 @@ class productsController extends Controller
     public function index()
     {
         $product = products::with(['productDetails' , 'images'])->paginate(5);
-        return response()->json([
-            "data"=> $product,
-        ]);
+        return productResource::collection($product);
     }
 
     /**
