@@ -28,6 +28,7 @@ class updateproductRequest extends FormRequest
             "price" => "nullable|numeric",
             "brand" => "nullable|string",
             "description" => "nullable|string",
+            "category" => "nullable|string",
           
         ];
     }
