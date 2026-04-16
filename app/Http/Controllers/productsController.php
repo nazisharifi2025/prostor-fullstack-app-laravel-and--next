@@ -83,6 +83,8 @@ class productsController extends Controller
         "stock"=> $request->stock,
         "price"=> $request->price,
        ]);
+         $product->save();
+            $productDetails = productDetails::where("product_id" , $id)->first();
     }
 
     /**
