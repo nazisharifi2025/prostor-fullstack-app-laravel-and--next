@@ -85,6 +85,12 @@ class productsController extends Controller
        ]);
          $product->save();
             $productDetails = productDetails::where("product_id" , $id)->first();
+            $productDetails->update([
+                "brand" => $request->brand,
+                "description" => $request->description,
+                "category" => $request->category,
+            ]);
+            $productDetails->save();
     }
 
     /**
