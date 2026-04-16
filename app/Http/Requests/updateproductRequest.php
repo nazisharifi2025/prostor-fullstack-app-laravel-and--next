@@ -25,7 +25,8 @@ class updateproductRequest extends FormRequest
         return [
             "name" => "nullable|string",
               "stock" => "nullable|integer",
-           
+            "price" => "nullable|numeric",
+            
         ];
     }
 }
