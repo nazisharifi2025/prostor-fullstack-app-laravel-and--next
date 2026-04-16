@@ -23,12 +23,12 @@ class updateproductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "nullable|string",
-              "stock" => "nullable|integer",
-            "price" => "nullable|numeric",
-            "brand" => "nullable|string",
-            "description" => "nullable|string",
-            "category" => "nullable|string",
+            "name" => "nullable|string:min:3",
+              "stock" => "nullable|integer|min:1",
+            "price" => "nullable|numeric|min:20",
+            "brand" => "nullable|string|min:3",
+            "description" => "nullable|string|min:10",
+            "category" => "nullable|string|min:3",
             "img_url" => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
         ];
     }
