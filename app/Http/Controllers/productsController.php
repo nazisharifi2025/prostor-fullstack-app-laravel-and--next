@@ -78,6 +78,11 @@ class productsController extends Controller
     public function update(updateproductRequest $request, string $id)
     {
        $product = products::findOrFail($id);
+       $product->update([
+        "name"=> $request->name,
+        "stock"=> $request->stock,
+        "price"=> $request->price,
+       ]);
     }
 
     /**
