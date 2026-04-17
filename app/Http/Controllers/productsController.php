@@ -102,6 +102,7 @@ class productsController extends Controller
                 "imageable_type" => products::class,
             ]);
             $image->save();
+            return response()->json([]);
     }
 
     /**
