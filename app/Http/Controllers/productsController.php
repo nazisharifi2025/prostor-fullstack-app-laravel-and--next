@@ -93,7 +93,7 @@ class productsController extends Controller
             $productDetails->save();
             $path = null;
             if($request->hasFile('image')){
-                $path =
+                $path = $request->file('img_url')->store('images' , 'public');
             }
     }
 
