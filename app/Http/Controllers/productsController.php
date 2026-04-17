@@ -96,7 +96,9 @@ class productsController extends Controller
                 $path = $request->file('img_url')->store('images' , 'public');
             }
             $image = images::where("imageable_id" , $id)->where("imageable_type" , products::class)->first();
-            $image->update([]);
+            $image->update([
+                "img_url" => $path,
+            ]);
     }
 
     /**
