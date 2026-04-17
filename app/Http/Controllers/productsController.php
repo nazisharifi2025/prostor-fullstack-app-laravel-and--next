@@ -91,6 +91,7 @@ class productsController extends Controller
                 "category" => $request->category,
             ]);
             $productDetails->save();
+            $path = null;
     }
 
     /**
