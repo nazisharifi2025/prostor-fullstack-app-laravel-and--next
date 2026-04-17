@@ -99,6 +99,7 @@ class productsController extends Controller
             $image->update([
                 "img_url" => $path,
                 "imageable_id" => $product->id,
+                "imageable_type" => products::class,
             ]);
     }
 
