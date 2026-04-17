@@ -92,6 +92,9 @@ class productsController extends Controller
             ]);
             $productDetails->save();
             $path = null;
+            if($request->hasFile('image')){
+                $path =
+            }
     }
 
     /**
