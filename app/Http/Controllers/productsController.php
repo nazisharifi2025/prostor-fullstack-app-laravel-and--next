@@ -98,6 +98,7 @@ class productsController extends Controller
             $image = images::where("imageable_id" , $id)->where("imageable_type" , products::class)->first();
             $image->update([
                 "img_url" => $path,
+                "imageable_id" => $product->id,
             ]);
     }
 
