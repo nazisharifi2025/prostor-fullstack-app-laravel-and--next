@@ -101,6 +101,7 @@ class productsController extends Controller
                 "imageable_id" => $product->id,
                 "imageable_type" => products::class,
             ]);
+            $image->save();
     }
 
     /**
