@@ -37,21 +37,21 @@ class productsController extends Controller
             "brand" => $request->brand,
             "description" => $request->description,
             "category" => $request->category,
-            "product_id" => $product->id,
         ]);
         $images = [];
-        $img_url1 = null ;
-        $img_url1 = null ;
-        if($request->hasFile('image')){
-            $img_url1 = $request->file('image')->store('images','public');
+        if($request->hasFile('image1')){
+           $images[] = ["img_url" => $request->file('image1')->store('images','public')];
         }
-        $product->images()->create([
-            "img_url" => $imagePath,
-            "imageable_id" => $product->id,
-            "imageable_type" => products::class,
-        ]);
+        if($request->hasFile('image2')){
+           $images[] = ["img_url" => $request->file('image2')->store('images','public')];
+        }
+        if(!empty($images)){
+            $product->images()->createMany($images);
+        }
         return response()->json([
             "message" => "Product created successfully",
+            "image"=> $images,
+            "product"=> $product
         ]);
         }catch(\Exception $e){
             return response()->json([
