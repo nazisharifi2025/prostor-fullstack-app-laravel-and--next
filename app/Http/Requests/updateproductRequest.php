@@ -29,7 +29,7 @@ class updateproductRequest extends FormRequest
             "brand" => "nullable|string|min:3",
             "description" => "nullable|string|min:10",
             "category" => "nullable|string|min:3",
-            "img_url" => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            "image" => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
         ];
     }
 }

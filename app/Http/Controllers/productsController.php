@@ -37,19 +37,17 @@ class productsController extends Controller
             "price" => $request->price,
         ]);
         $product->save();
-        $productDetails = productDetails::create([
+        $product->productDetails()->create([
             "brand" => $request->brand,
             "description" => $request->description,
             "category" => $request->category,
             "product_id" => $product->id,
         ]);
-        $productDetails->save();
-        $image = images::create([
+        $product->images()->create([
             "img_url" => $imagePath,
             "imageable_id" => $product->id,
             "imageable_type" => products::class,
         ]);
-        $image->save();
         return response()->json([
             "message" => "Product created successfully",
         ]);
@@ -77,23 +75,21 @@ class productsController extends Controller
      */
     public function update(updateproductRequest $request, string $id)
     {
-       $product = products::findOrFail($id);
+       $product = products::with(['images' , 'productDetails'])->findOrFail($id);
        $product->update([
         "name"=> $request->name,
         "stock"=> $request->stock,
         "price"=> $request->price,
        ]);
-         $product->save();
             $productDetails = productDetails::where("product_id" , $id)->first();
             $productDetails->update([
                 "brand" => $request->brand,
                 "description" => $request->description,
                 "category" => $request->category,
             ]);
-            $productDetails->save();
             $path = null;
             if($request->hasFile('image')){
-                $path = $request->file('img_url')->store('images' , 'public');
+                $path = $request->file('image')->store('images' , 'public');
             }
             $path2 = null ;
             if($request->hasFile('image2')){
