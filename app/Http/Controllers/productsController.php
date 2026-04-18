@@ -106,6 +106,11 @@ class productsController extends Controller
                         'img_url' => $path,
                     ]);
                 }
+                else{
+                    $image->update([
+                        'img_url'=> $path2,
+                    ]);
+                }
             }
             return response()->json([
                 "message" => "Product updated successfully",
