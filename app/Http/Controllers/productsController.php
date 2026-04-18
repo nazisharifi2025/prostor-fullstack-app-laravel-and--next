@@ -42,7 +42,9 @@ class productsController extends Controller
         $images = [];
         $img_url1 = null ;
         $img_url1 = null ;
-        
+        if($request->hasFile('image')){
+            $img_url1 = $request->file('image')->store('images','public');
+        }
         $product->images()->create([
             "img_url" => $imagePath,
             "imageable_id" => $product->id,
