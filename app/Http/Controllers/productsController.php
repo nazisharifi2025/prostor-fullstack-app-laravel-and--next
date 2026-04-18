@@ -27,10 +27,6 @@ class productsController extends Controller
     public function store(productRequest $request)
     {
         try{
-        $imagePath = null ;
-        if($request->hasFile("img_url")){
-            $imagePath = $request->file("img_url")->store("images" , "public");
-        }
         $product = products::create([
             "name" => $request->name,
             "stock" => $request->stock,
@@ -43,6 +39,10 @@ class productsController extends Controller
             "category" => $request->category,
             "product_id" => $product->id,
         ]);
+        $images = [];
+        $img_url1 = null ;
+        $img_url1 = null ;
+        
         $product->images()->create([
             "img_url" => $imagePath,
             "imageable_id" => $product->id,
