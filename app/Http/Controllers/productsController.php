@@ -95,13 +95,18 @@ class productsController extends Controller
             if($request->hasFile('image')){
                 $path = $request->file('img_url')->store('images' , 'public');
             }
+            $path2 = null ;
+            if($request->hasFile('image2')){
+               $path2 =  $request->file('image2')->store('images', 'public');
+            }
             $image = images::where("imageable_id" , $id)->where("imageable_type" , products::class)->first();
-            $image->update([
-                "img_url" => $path,
-                "imageable_id" => $product->id,
-                "imageable_type" => products::class,
-            ]);
-            $image->save();
+            for($i = 0 , count($image)> 0, $i++){
+                if($i === 0){
+                    $image->update([
+                        
+                    ]);
+                }
+            }
             return response()->json([
                 "message" => "Product updated successfully",
             ]);
