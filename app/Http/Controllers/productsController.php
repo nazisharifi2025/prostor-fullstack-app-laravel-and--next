@@ -100,10 +100,10 @@ class productsController extends Controller
                $path2 =  $request->file('image2')->store('images', 'public');
             }
             $image = images::where("imageable_id" , $id)->where("imageable_type" , products::class)->first();
-            for($i = 0 , count($image)> 0, $i++){
+            for($i = 0; count($image)> 0; $i++){
                 if($i === 0){
                     $image->update([
-                        
+                        'img_url' => $path,
                     ]);
                 }
             }
