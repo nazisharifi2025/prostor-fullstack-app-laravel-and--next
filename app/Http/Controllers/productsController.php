@@ -83,21 +83,16 @@ class productsController extends Controller
         "stock"=> $request->stock,
         "price"=> $request->price,
        ]);
-            $productDetails = productDetails::where("product_id" , $id)->first();
-            $productDetails->update([
+            
+            $product->productDetails()->update([
                 "brand" => $request->brand,
                 "description" => $request->description,
                 "category" => $request->category,
             ]);
-            $path = null;
-            if($request->hasFile('image')){
-                $path = $request->file('image')->store('images' , 'public');
-            }
-            $path2 = null ;
-            if($request->hasFile('image2')){
-               $path2 =  $request->file('image2')->store('images', 'public');
-            }
-            $image = images::where("imageable_id" , $id)->where("imageable_type" , products::class)->first();
+           
+            $product->images()->update([
+                ""
+            ]);
             for($i = 0; count($image)> 0; $i++){
                 if($i === 0){
                     $image->update([
