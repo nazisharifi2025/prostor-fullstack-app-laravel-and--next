@@ -92,23 +92,14 @@ class productsController extends Controller
            $path1 = null ;
            $path2 = null ;
            if($request->hasFile('image1') && $request->hasFile('image2')){
-            
+            $path1 = $request->file('image1')->store('images' , 'public');
+            $path2 = $request->file('image2')->store('images' , 'public');
            }
             $product->images()->update([
-                ""
+                ["img_url" => $path1],
+                ["img_url" => $path2],
             ]);
-            for($i = 0; count($image)> 0; $i++){
-                if($i === 0){
-                    $image->update([
-                        'img_url' => $path,
-                    ]);
-                }
-                else{
-                    $image->update([
-                        'img_url'=> $path2,
-                    ]);
-                }
-            }
+            
             return response()->json([
                 "message" => "Product updated successfully",
             ]);
