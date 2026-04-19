@@ -89,7 +89,11 @@ class productsController extends Controller
                 "description" => $request->description,
                 "category" => $request->category,
             ]);
-           
+           $path1 = null ;
+           $path2 = null ;
+           if($request->hasFile('image1') && $request->hasFile('image2')){
+            
+           }
             $product->images()->update([
                 ""
             ]);
