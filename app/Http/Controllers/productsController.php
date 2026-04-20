@@ -9,6 +9,7 @@ use App\Models\images;
 use App\Models\productDetails;
 use App\Models\products;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class productsController extends Controller
 {
@@ -96,7 +97,9 @@ class productsController extends Controller
             $path2 = $request->file('image2')->store('images' , 'public');
            }
            foreach($product->images() as $image){
-            if(Storage::disk("public")->)
+            if(Storage::disk("public")->exists($image->img_url)){
+
+            }
            }
             $product->images()->update([
                 ["img_url" => $path1],
