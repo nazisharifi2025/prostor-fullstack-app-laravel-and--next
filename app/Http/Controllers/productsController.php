@@ -98,7 +98,7 @@ class productsController extends Controller
            }
            foreach($product->images() as $image){
             if(Storage::disk("public")->exists($image->img_url)){
-
+                Storage::disk('public')->delete($image->img_url);
             }
            }
             $product->images()->update([
