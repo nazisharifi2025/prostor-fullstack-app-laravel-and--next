@@ -95,6 +95,9 @@ class productsController extends Controller
             $path1 = $request->file('image1')->store('images' , 'public');
             $path2 = $request->file('image2')->store('images' , 'public');
            }
+           foreach($product->images() as $image){
+            if(Storage::disk("public")->)
+           }
             $product->images()->update([
                 ["img_url" => $path1],
                 ["img_url" => $path2],
