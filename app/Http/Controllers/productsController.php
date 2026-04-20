@@ -102,7 +102,7 @@ class productsController extends Controller
             }
            }
            $product->images()->delete();
-            $product->images()->update([
+            $product->images()->createMany([
                 ["img_url" => $path1],
                 ["img_url" => $path2],
             ]);
