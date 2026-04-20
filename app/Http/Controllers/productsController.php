@@ -118,6 +118,7 @@ class productsController extends Controller
     public function destroy(string $id)
     {
         $product = products::findOrFail($id);
+        $product->load(["images", "productDetails"]);
         $product->delete();
         return response()->json([
             "massege"=> "product deleted successfully with id" . $product->id,
