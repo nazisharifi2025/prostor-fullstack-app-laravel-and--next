@@ -120,6 +120,7 @@ class productsController extends Controller
         $product = products::findOrFail($id);
         $product->load(["images", "productDetails"]);
         $product->productDetails()->delete();
+        foreach($product->images as $image){}
         $product->delete();
         return response()->json([
             "massege"=> "product deleted successfully with id" . $product->id,
