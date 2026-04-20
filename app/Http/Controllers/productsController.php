@@ -125,6 +125,7 @@ class productsController extends Controller
                 Storage::disk('public')->delete($image->img_url);
             }
         }
+        $product->images()->delete();
         $product->delete();
         return response()->json([
             "massege"=> "product deleted successfully with id" . $product->id,
