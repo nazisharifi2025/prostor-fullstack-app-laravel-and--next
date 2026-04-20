@@ -101,6 +101,7 @@ class productsController extends Controller
                 Storage::disk('public')->delete($image->img_url);
             }
            }
+           $product->images()->delete();
             $product->images()->update([
                 ["img_url" => $path1],
                 ["img_url" => $path2],
