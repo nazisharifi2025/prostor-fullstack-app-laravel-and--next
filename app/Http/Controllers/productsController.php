@@ -18,7 +18,7 @@ class productsController extends Controller
      */
     public function index()
     {
-        $product = products::with(['productDetails' , 'images'])->paginate(5);
+        $product = products::with(['productDetails' , 'images'])->orderBy('created_at')->paginate(5);
         return productResource::collection($product);
     }
 
