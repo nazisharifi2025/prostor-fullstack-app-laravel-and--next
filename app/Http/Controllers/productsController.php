@@ -18,8 +18,8 @@ class productsController extends Controller
      */
     public function index()
     {
-        $product = products::with(['productDetails' , 'images'])->orderBy('created_at', 'desc')->paginate(5);
-        return productResource::collection($product);
+        $product = products::with(['productDetails' , 'images'])->orderBy('created_at', 'desc')->paginate(4);
+        return $product;
     }
 
     /**
@@ -65,13 +65,13 @@ class productsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        $products = products::findOrFail($id);
-        return response()->json([
-            "data"=> $products,
-        ]);
-    }
+public function show(string $id)
+{
+    $products = products::with(['productDetails', 'images'])
+        ->findOrFail($id);
+
+    return response()->json($products);
+}
 
     /**
      * Update the specified resource in storage.
