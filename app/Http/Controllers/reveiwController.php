@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\addreviewsRequest;
 use App\Http\Resources\addreveiwResource;
 use App\Models\reviews;
 use Illuminate\Http\Request;
@@ -15,14 +16,16 @@ class reveiwController extends Controller
     {
         $review = reviews::with(['products' , 'users'])->get();
         return addreveiwResource::collection($review);
-    }
+    }   
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(addreviewsRequest $request)
     {
-        //
+        $review = reviews::create($request->validated());
+        $review->load(['products' , 'users']);
+        return new addreveiwResource($review);
     }
 
     /**
