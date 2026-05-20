@@ -16,7 +16,12 @@ class AuthController extends Controller
             "email"=> "required|string|min:3",
             "password"=> "required|numeric|min:5"
         ]);
-        $user = User::all();
+        $users = User::all();
+        foreach($users as $user){
+            if($user->email === $request->email && hash::chacke($user->password === $request->password)){
+
+            }
+        }
     }
 
     /**
