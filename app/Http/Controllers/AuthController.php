@@ -12,6 +12,9 @@ class AuthController extends Controller
      */
     public function index(Request $request)
     {
+        $request->validate([
+            "email"=> "required|string|min:3"
+        ]);
         $user = User::all();
     }
 
