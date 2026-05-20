@@ -17,8 +17,11 @@ class addreveiwResource extends JsonResource
         return [
             "rating"=> $this->rating,
             "comment"=> $this->comment,
-            "user-name"=>$this->users->name,
-            "product-name"=> $this->products->name,
+            "user_name"=>$this->users->name,
+            "user_email"=>$this->users->email,
+            "product_name"=> $this->products->name,
+            "product_id"=> $this->product_id,
+            "created_at"=> $this->created_at
         ];
     }
 }
