@@ -19,7 +19,9 @@ class AuthController extends Controller
         $users = User::all();
         foreach($users as $user){
             if($user->email === $request->email && hash::chacke($user->password === $request->password)){
-
+                return response()->json([
+                    "data"=> "this User Name is with name" . $user->name,
+                ]);
             }
         }
     }
