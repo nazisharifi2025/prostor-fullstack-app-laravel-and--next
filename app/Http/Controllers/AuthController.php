@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -14,11 +15,11 @@ class AuthController extends Controller
     {
         $request->validate([
             "email"=> "required|string|min:3",
-            "password"=> "required|numeric|min:5"
+            "password"=> "required|string|min:5"
         ]);
         $users = User::all();
         foreach($users as $user){
-            if($user->email === $request->email && hash::chacke($user->password === $request->password)){
+            if($user->email === $request->email && Hash::chacke($user->password === $request->password)){
                 return response()->json([
                     "data"=> "this User Name is with name" . $user->name,
                 ]);
