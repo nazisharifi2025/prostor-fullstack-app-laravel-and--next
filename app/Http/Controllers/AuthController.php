@@ -32,7 +32,21 @@ class AuthController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "email"=> "required|email",
+            "password"=> "required|numeric|min:6"
+        ]);
+        $user = User::where('email' , $request->email)->first();
+        if($user && Hash::check($request->password , $user->password)){
+           $token = $user->createToken('auth_token')->plainTextToken;
+              return response()->json([
+            "Created Token "=> $token,
+            "successs"=> true
+        ]);
+        } 
+        return response()->json([
+            "success"=> false
+        ]);
     }
 
     /**
