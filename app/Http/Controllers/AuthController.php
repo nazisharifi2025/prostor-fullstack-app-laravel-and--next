@@ -33,18 +33,23 @@ class AuthController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "email"=> "required|email",
-            "password"=> "required|numeric|min:6"
+        "email"=> "required|string|min:5",
+        "password"=> "required|string|min:6"
+        ],[
+            "email.required" => "the email is required plase enter your email address",
+            "email.string"=> "the email must be a text",
+            "password.min"=> "the password must be at least 5 characters"
         ]);
         $user = User::where('email' , $request->email)->first();
         if($user && Hash::check($request->password , $user->password)){
            $token = $user->createToken('auth_token')->plainTextToken;
               return response()->json([
-            "Created Token "=> $token,
-            "successs"=> true
+            "data"=> $token,
+            "success"=> true
         ]);
         } 
         return response()->json([
+            "data"=> "somting went wrong",
             "success"=> false
         ]);
     }
