@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 
 class SignUpController extends Controller
@@ -26,12 +27,19 @@ class SignUpController extends Controller
             "password"=> "required|string|min:6",
             "phone_number"=> "required|string|min:9:max:14",
         ]);
-        $user = User::create($request->validated());
-         $token = $user->createToken('user_token')->plainTextToken;
-         return response()->json([
-            "message" => $token,
-            "status"=> true
-         ]);
+        try{
+            $user = User::create($request->validated());
+             $token = $user->createToken('user_token')->plainTextToken;
+             return response()->json([
+                "message" => $token,
+                "status"=> true
+             ]);
+        }catch(Exception $error){
+              return response()->json([
+                "message" => "somting went wrong",
+                "status"=> false
+             ]);
+        }
     }
 
     /**
