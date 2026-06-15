@@ -28,6 +28,10 @@ class SignUpController extends Controller
         ]);
         $user = User::create($request->validated());
          $token = $user->createToken('user_token')->plainTextToken;
+         return response()->json([
+            "message" => $token,
+            "status"=> true
+         ]);
     }
 
     /**
