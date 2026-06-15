@@ -23,6 +23,7 @@ class SignUpController extends Controller
             "name"=> "required|string|min:3",
             "email"=> "required|string|min:5",
             "password"=> "required|string|min:6",
+            "phone_number"=> "required|string|min:9:max:14",
         ]);
     }
 
