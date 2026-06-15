@@ -21,6 +21,8 @@ class SignUpController extends Controller
     {
         $request->validate([
             "name"=> "required|string|min:3",
+            "email"=> "required|string|min:5",
+            "password"=> "required|string|min:6",
         ]);
     }
 
