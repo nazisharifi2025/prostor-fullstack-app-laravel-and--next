@@ -53,6 +53,9 @@ class SignUpController extends Controller
     public function show(string $id)
     {
          $user = User::all();
+         return response()->json([
+            "message"=> $user
+         ]);
     }
 
     /**
