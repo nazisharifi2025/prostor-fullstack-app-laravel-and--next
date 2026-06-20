@@ -23,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        "phone_number"
     ];
     public function carts(){
         return $this->hasMany(cart::class , 'user_id');    

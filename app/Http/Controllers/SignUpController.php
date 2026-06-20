@@ -25,10 +25,15 @@ class SignUpController extends Controller
             "name"=> "required|string|min:3",
             "email"=> "required|string|min:5",
             "password"=> "required|string|min:6",
-            "phone_number"=> "required|string|min:9:max:14",
+            "phone_number"=> "required|string",
         ]);
         try{
-            $user = User::create($request->validated());
+            $user = User::create([
+                "name"=> $request->name,
+                "email"=> $request->email,
+                "password"=> bcrypt($request->password),
+                "phone_number"=> $request->phone_number
+            ]);
              $token = $user->createToken('user_token')->plainTextToken;
              return response()->json([
                 "message" => $token,
@@ -36,7 +41,7 @@ class SignUpController extends Controller
              ]);
         }catch(Exception $error){
               return response()->json([
-                "message" => "somting went wrong",
+                "message" => "somting went",
                 "status"=> false
              ]);
         }
@@ -47,7 +52,7 @@ class SignUpController extends Controller
      */
     public function show(string $id)
     {
-        //
+         $user = User::all();
     }
 
     /**
