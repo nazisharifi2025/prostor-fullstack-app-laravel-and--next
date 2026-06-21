@@ -52,7 +52,7 @@ class SignUpController extends Controller
      */
     public function show(string $id)
     {
-         $user = User::all();
+         $user = User::findOrFail('$id')->first();
          return response()->json([
             "message"=> $user
          ]);
