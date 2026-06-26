@@ -17,6 +17,10 @@ class SignUpController extends Controller
        return response()->json([
         "data"=> $user
        ]);
+       $user = User::all();
+       return response()->json([
+        "data"=> $user
+       ]);
     }
 
     /**
