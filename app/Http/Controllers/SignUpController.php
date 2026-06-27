@@ -17,10 +17,6 @@ class SignUpController extends Controller
        return response()->json([
         "data"=> $user
        ]);
-       $user = User::all();
-       return response()->json([
-        "data"=> $user
-       ]);
     }
 
     /**
@@ -78,6 +74,8 @@ class SignUpController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try{
+        $user  = user::findOrFail($id)->delete();
+        }
     }
 }
