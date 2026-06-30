@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\addreviewsRequest;
 use App\Http\Resources\addreveiwResource;
 use App\Models\reviews;
+use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 
 class reveiwController extends Controller
@@ -50,5 +52,23 @@ class reveiwController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function allReviews(){
+        try{
+         $allReviews = reviews::whereDate('created_at', "<=" , now())->whereDate('created_at' , ">=" , Carbon::now()->subDays(30))->count();
+         return response()->json([
+            "reviews"=> $allReviews
+         ]);
+        }catch(Exception $err){
+            return response()->json([
+                "reviews"=> $err->getMessage(),
+            ]);
+        }
+    }
+    public function getPreviusMonthReviews(){
+        $getReviews = reviews::whereDate('created_at' , "<" , Carbon::now()->subDays(30))->whereDate('created_at' ,">", Carbon::now()->subDays(60))->count();
+        return response()->json([
+            "allReviewsCounte"=> $getReviews,
+        ]);
     }
 }

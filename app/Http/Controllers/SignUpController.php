@@ -74,8 +74,6 @@ class SignUpController extends Controller
      */
     public function destroy(string $id)
     {
-        try{
-        $user  = user::findOrFail($id)->delete();
-        }
+      
     }
 }
