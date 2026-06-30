@@ -20,4 +20,6 @@ Route::prefix('dashboard')->group(function(){
     Route::get('previews-months' , [reveiwController::class , 'getPreviusMonthReviews']);
     Route::get('report-of-current-user' , [userController::class , 'getcurrentMonthUser']);
     Route::get('report-of-previous-user' , [userController::class , 'getPreviouMonthUser']);
+    Route::get('CurrentMonthlyProduct' , [productsController::class , 'CurrentMonthlyProduct']);
+    Route::get('PrevMonthlyProduct' , [productsController::class , 'PrevMonthlyProduct']);
 });

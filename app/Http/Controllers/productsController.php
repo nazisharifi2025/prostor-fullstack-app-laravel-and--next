@@ -8,6 +8,7 @@ use App\Http\Resources\productResource;
 use App\Models\images;
 use App\Models\productDetails;
 use App\Models\products;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -132,5 +133,17 @@ public function show(string $id)
             "massege"=> "product deleted successfully with id" . $product->id,
         ]);
         
+    }
+    public function CurrentMonthlyProduct(){
+        $product = products::whereDate('created_at', "<=" , now())->whereDate('created_at' , ">=" , Carbon::now()->subDays(30))->count();
+        return response()->json([
+            "CurrentProduct"=> $product,
+        ]);
+    }
+    public function PrevMonthlyProduct(){
+        $product = Products::whereDate('created_at' , '<' , Carbon::now()->subDays(30))->whereDate('created_at' , '>' , Carbon::now()->subDays(60))->count();
+        return response()->json([
+            "prevProduct"=> $product
+        ]);
     }
 }

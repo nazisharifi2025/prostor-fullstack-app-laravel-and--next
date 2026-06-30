@@ -49,14 +49,14 @@ class userController extends Controller
         //
     }
     public function getcurrentMonthUser(){
-      $users =  User::whereDate('created_at' , "< ", now())->whereDate('created_at' , "> " ,Carbon::now()->subDays(30) )->count();
+      $users =  User::whereDate('created_at' , "<", now())->whereDate('created_at' , ">" ,Carbon::now()->subDays(30) )->count();
       return response()->json([
         "currentUser"=> $users,
       ]);
     }
     public function getPreviouMonthUser(){
         try{
-      $users =  User::whereDate('created_at' , "< ", Carbon::now()->subDays(30))->whereDate('created_at' , "> " ,Carbon::now()->subDays(30) )->count();
+      $users =  User::whereDate('created_at' , "<" , Carbon::now()->subDays(30))->whereDate('created_at' ,">", Carbon::now()->subDays(60))->count();
       return response()->json([
         "previousUser"=> $users,
       ]);
