@@ -22,6 +22,12 @@ class productsController extends Controller
         $product = products::with(['productDetails' , 'images'])->orderBy('created_at', 'desc')->paginate(4);
         return $product;
     }
+    public function getAllProduct(){
+        $product = Products::with(['productDetails' , 'images'])->paginate(10);
+        return response()->json([
+            "allProduct"=> $product
+        ]);
+    }
 
     /**
      * Store a newly created resource in storage.
