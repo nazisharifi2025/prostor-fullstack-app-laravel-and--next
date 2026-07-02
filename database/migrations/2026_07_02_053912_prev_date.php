@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,11 +12,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carts', function (Blueprint $table) {
-            $table->id();
-            //  $table->foreignId("cartItem_id")->constrained("cart_items")->onDelete('cascade');
-            // $table->foreignId("user_id")->constrained("users")->onDelete('cascade');
-            $table->timestamps();
+        Schema::table('products', function (Blueprint $table) {
+            $table->date('man_date')->default(now());
+            $table->date('expire_date')->default(Carbon::now()->addDays(60));
         });
     }
 
@@ -24,6 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carts');
+        Schema::table('products', function (Blueprint $table) {
+            //
+        });
     }
 };

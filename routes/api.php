@@ -22,4 +22,5 @@ Route::prefix('dashboard')->group(function(){
     Route::get('report-of-previous-user' , [userController::class , 'getPreviouMonthUser']);
     Route::get('CurrentMonthlyProduct' , [productsController::class , 'CurrentMonthlyProduct']);
     Route::get('PrevMonthlyProduct' , [productsController::class , 'PrevMonthlyProduct']);
+    Route::get('all-product' , [productsController::class , 'getAllProduct']);
 });
