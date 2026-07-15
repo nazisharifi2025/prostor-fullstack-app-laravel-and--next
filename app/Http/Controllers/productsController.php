@@ -39,6 +39,8 @@ class productsController extends Controller
             "name" => $request->name,
             "stock" => $request->stock,
             "price" => $request->price,
+            "man_date"=>$request->man_date,
+            "expire_date"=>$request->expire_date,
         ]);
         $product->save();
         $product->productDetails()->create([

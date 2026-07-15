@@ -12,7 +12,9 @@ class products extends Model
     protected $fillable = [
         "name",
         "stock",
-        "price"
+        "price",
+        "man_date",
+        "expire_date"
     ];
     public function productDetails(){
         return $this->hasOne(productDetails::class , 'product_id');
