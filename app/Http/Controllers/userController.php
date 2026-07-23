@@ -56,11 +56,15 @@ class userController extends Controller
     public function destroy(string $id)
     {
         try{
+            Gate::authorize('delete');
+            if(Gate::allows('delete')){
         $user = User::findOrfail($id)->delete();
         return response()->json([
-            "message"=> "One User Deleted",
+            "message"=> "One User Deleted successfully",
         ]);
-        }catch(Exception $err){
+        }
+        }
+        catch(Exception $err){
             return response()->json([
                 "message"=> "Could not delete the user"
             ]);
