@@ -48,16 +48,13 @@ class productsController extends Controller
             "description" => $request->description,
             "category" => $request->category,
         ]);
-        $images = [];
-        if($request->hasFile('image1')){
-           $images[] = ["img_url" => $request->file('image1')->store('images','public')];
+           $images = [];
+        if($request->hasFile('img_url1') && $request->hasFile("img_url2")){
+            $images[] = ['img_url' => $request->file("img_url1")->store('product_images','public')];
+            $images[] = ['img_url' => $request->file("img_url2")->store('product_images','public')];
         }
-        if($request->hasFile('image2')){
-           $images[] = ["img_url" => $request->file('image2')->store('images','public')];
-        }
-        if(!empty($images)){
-            $product->images()->createMany($images);
-        }
+        // save img url in database
+        $product->images()->createMany($images);
         return response()->json([
             "message" => "Product created successfully",
             "image"=> $images,

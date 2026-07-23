@@ -24,4 +24,5 @@ Route::prefix('dashboard')->group(function(){
     Route::get('PrevMonthlyProduct' , [productsController::class , 'PrevMonthlyProduct']);
     Route::get('all-product' , [productsController::class , 'getAllProduct']);
     Route::post('store-product' , [productsController::class , 'store']);
+    Route::apiResource('/all-users' , userController::class);
 });
