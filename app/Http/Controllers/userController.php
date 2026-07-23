@@ -55,7 +55,7 @@ class userController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::findOrfail($id)->delete();
     }
     public function getcurrentMonthUser(){
       $users =  User::whereDate('created_at' , "<", now())->whereDate('created_at' , ">" ,Carbon::now()->subDays(30) )->count();
