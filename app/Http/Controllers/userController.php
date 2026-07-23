@@ -55,7 +55,16 @@ class userController extends Controller
      */
     public function destroy(string $id)
     {
+        try{
         $user = User::findOrfail($id)->delete();
+        return response()->json([
+            "message"=> "One User Deleted",
+        ]);
+        }catch(Exception $err){
+            return response()->json([
+                "message"=> "Could not delete the user"
+            ]);
+        }
     }
     public function getcurrentMonthUser(){
       $users =  User::whereDate('created_at' , "<", now())->whereDate('created_at' , ">" ,Carbon::now()->subDays(30) )->count();
